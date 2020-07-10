@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState,useEffect} from 'react'
 
-function App() {
+export default function App(){
+  const [title, setTitle] = useState('')
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `https://hacker-news.firebaseio.com/v0/item/8863.json?print=pretty`
+            );
+        const json = await response.json();
+          setTitle(json.title)
+      } catch(error) {console.log("error")}
+  }
+  fetchData()
+}, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+  <h1>{title}</h1>
+    </>
+  )
 }
-
-export default App;
