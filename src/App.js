@@ -2,22 +2,28 @@ import React, {useState,useEffect} from 'react'
 
 export default function App(){
   const [title, setTitle] = useState('')
+  const [list, setList] = useState([])
   useEffect(() => {
-    async function fetchData() {
+    async function fetchStories() {
       try {
         const response = await fetch(
-          `https://hacker-news.firebaseio.com/v0/item/8863.json?print=pretty`
+        //  `https://hacker-news.firebaseio.com/v0/item/23790207.json?print=pretty`
+        `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`
             );
         const json = await response.json();
-          setTitle(json.title)
+          setList(json)
       } catch(error) {console.log("error")}
   }
-  fetchData()
+  fetchStories();
 }, [])
 
+  const items = list.slice(0 , 30)
   return (
     <>
-  <h1>{title}</h1>
+  {items.map(id => {
+    return(
+    <h1 key={id}>{id}</h1>)
+  })}
     </>
   )
 }
