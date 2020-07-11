@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react'
-import { getStoryID, getStory } from '../services/api'
+import { getStoryID } from '../services/api'
 import { Story } from '../components/Story'
+
 
 // container managing state for the story IDs
 export const StoryContainer = () => {
