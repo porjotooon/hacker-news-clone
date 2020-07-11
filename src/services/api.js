@@ -7,9 +7,8 @@ export const storyListUrl = `${baseUrl}/topstories.json`
 //returns all data related to story item
 export const getStory = async (storyId) => {
     const result = await axios
-    .get(`${storyUrl + storyId}.json`)
-    .then(({ data }) => data)
-
+    .get(`${storyUrl + storyId}.json`).then(({ data }) => data)
+    
     return result
 }
 
