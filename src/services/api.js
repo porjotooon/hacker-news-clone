@@ -12,7 +12,7 @@ const selectFields = (({ id, by, title, time, score, url } = {}) => ({
 //returns all data related to story item
 export const getStory = async (storyId) => {
     const result = await axios
-    .get(`${storyUrl + storyId}.json`).then(({ data }) => selectFields(data))
+    .get(`${storyUrl + storyId}.json`).then(({ data }) => data && selectFields(data))
     
     return result
 }
