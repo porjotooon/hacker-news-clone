@@ -12,6 +12,5 @@ export const StoryWrapper = styled.section`
  &:last-of-type{
      margin-bottom: 0;
      padding-bottom: 0;
- }
- 
+ } 
 `

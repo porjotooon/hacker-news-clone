@@ -1,7 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { getStory } from '../services/api'
-import { StoryWrapper } from '../styles/StoryStyles'
+import { mapTime } from '../services/mapTime'
 import styled from 'styled-components'
+
+
+const StoryWrapper = styled.section`
+ padding-top: 10px;
+ margin-bottom: 20px;
+ border-top: 1px solid #cccccc;
+
+ &:first-of-type{
+     border-top: none;
+ }
+ 
+ &:last-of-type{
+     margin-bottom: 0;
+     padding-bottom: 0;
+ } 
+`
 
 const StoryTitle = styled.h1`
     margin-bottom: 5px;
@@ -16,37 +32,6 @@ const StoryTitle = styled.h1`
     }
 `
 // helper function to show how long before the post was posted
-const mapTime = timestamp => {
-    const seconds = Math.floor((new Date() - timestamp * 1000) / 1000);
-  
-    let interval = Math.floor(seconds / 31536000);
-  
-    if (interval > 1) {
-      return `${interval} years`;
-    }
-    interval = Math.floor(seconds / 2592000);
-  
-    if (interval > 1) {
-      return `${interval} months`;
-    }
-    interval = Math.floor(seconds / 86400);
-  
-    if (interval > 1) {
-      return `${interval} days`;
-    }
-    interval = Math.floor(seconds / 3600);
-  
-    if (interval > 1) {
-      return `${interval} hours`;
-    }
-    interval = Math.floor(seconds / 60);
-  
-    if (interval > 1) {
-      return `${interval} minutes`;
-    }
-  
-    return `${Math.floor(seconds)} seconds`;
-  }
 
 
 export const Story = ({ storyId }) => {
